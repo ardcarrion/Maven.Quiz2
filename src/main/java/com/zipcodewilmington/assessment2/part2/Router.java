@@ -2,15 +2,13 @@ package com.zipcodewilmington.assessment2.part2;
 //
 //import com.sun.org.apache.xpath.internal.operations.String;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Router {
     private Map map;
 
     public Router() {
-        this.map = new HashMap();
+        this.map = new LinkedHashMap();
     }
 
     public void add(String path, String controller) {
@@ -35,10 +33,7 @@ public class Router {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        Collection<String> keys = map.values();
-        for (String key : keys) {
-            result.append(String.format("%s -> %s\n", key, map.get(key)));
-        }
+        map.forEach((key, value) -> result.append(key).append(value).append("\n"));
         return result.toString();
     }
 }
